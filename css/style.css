@@ -11,3 +11,149 @@
   text-decoration: none; /* Elimina cualquier subrayado o decoración de texto predeterminada. */
   transition: 0.2s linear; /* Aplica una transición suave de 0.2 segundos a las propiedades CSS que cambian. */
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fdae1c;
+    padding: 15px 20px;
+}
+
+.navbar-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-menu a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-menu a:hover {
+    color: #151515;
+    letter-spacing: 1px;
+}
+
+.navbar-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #292979;
+    cursor: pointer;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #e6e6e6;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        z-index: 1000; /* Asegura que el menú esté encima del slider */
+    }
+
+    .navbar-menu a {
+        padding: 10px;
+        border-top: 1px solid #e6e6e6;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+}
+
+/* Estilos para el slider */
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto;
+    width: 100%; /* Valor por defecto */
+}
+
+/* Tamaño del slider para pantallas grandes (escritorio) */
+@media (min-width: 1024px) {
+    .slider-container {
+        width: 80%; /* Mostrar al 80% del ancho de la pantalla */
+    }
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #ffffff;
+    font-size: 1.5em;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Botones de navegación */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+.slider-button.prev {
+    left: 10px;
+}
+
+.slider-button.next {
+    right: 10px;
+}
+
+/* Efecto hover en los botones */
+.slider-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .caption {
+        font-size: 1em;
+        bottom: 10px;
+        left: 10px;
+        padding: 5px;
+    }
+    .slider-button {
+        padding: 8px;
+        font-size: 20px;
+    }
+}
