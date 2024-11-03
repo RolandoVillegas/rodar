@@ -22,28 +22,72 @@
     </header>
 
     <main>
-
-      <section class="slider-container">
-        <div class="slider" id="slider">
-            <div class="slide">
-                <img src="images/Carusel01.jpg" alt="Personas disfrutando de un viaje en grupo">
-                <div class="caption">Viaja, ahorra y comparte momentos con otros.</div>
-            </div>
-            <div class="slide">
-                <img src="images/Carusel02.png" alt="Amigos en un automóvil">
-                <div class="caption">Haz nuevos amigos en cada destino.</div>
-            </div>
-            <div class="slide">
-                <img src="images/Carusel02.png" alt="Paisaje en la carretera">
-                <div class="caption">Con RODAR, descubre paisajes increíbles.</div>
-            </div>
+      <section class="container">
+        <div class="wrap">
+          <div class="wrap-texto">
+            <h1>¿Necesitás transporte?</h1>
+            <p>
+              En Rodar podés buscar tu destino y compartir los gastos del viaje.
+            </p>
+            <p>
+              Y si tenés un vehículo y hacés un viaje, podés publicarlo y
+              compartirlo.
+            </p>
+            <p>Si lo pensás, ¡todos ganamos!</p>
+          </div>
         </div>
-        <button class="slider-button prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="slider-button next" onclick="moveSlide(1)">&#10095;</button>
-    </section>
+        
+        <section class="cards-section">
+          <div class="card">
+            <img src="images/card-image1.jpg" alt="Imagen de la tarjeta izquierda" class="card-img">
+            <div class="card-content">
+              <h2>Buscá tu destino</h2>
+              <p>Buscá dónde querés ir y reducí tus gastos. Tu bolsillo, agradecido.</p>
+              <button class="card-btn">Ver más</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/card-image2.jpg" alt="Imagen de la tarjeta derecha" class="card-img">
+            <div class="card-content">
+              <h2>Publicá a dónde vas</h2>
+              <p>¿Cansado de viajar solo en tu auto? Compartí tus viajes. Ganás amigos y achicás gastos.</p>
+              <button class="card-btn">Ver más</button>
+            </div>
+          </div>
+        </section>
 
+
+        <section class="slider-container">
+          <div class="slider" id="slider">
+            <div class="slide">
+              <img
+                src="images/Carusel01.jpg"
+                alt="Personas disfrutando de un viaje en grupo"
+              />
+              <div class="caption">
+                Viaja, ahorra y comparte momentos con otros.
+              </div>
+            </div>
+            <div class="slide">
+              <img src="images/Carusel02.png" alt="Amigos en un automóvil" />
+              <div class="caption">Haz nuevos amigos en cada destino.</div>
+            </div>
+            <div class="slide">
+              <img src="images/Carusel02.png" alt="Paisaje en la carretera" />
+              <div class="caption">
+                Con RODAR, descubre paisajes increíbles.
+              </div>
+            </div>
+          </div>
+          <button class="slider-button prev" onclick="moveSlide(-1)">
+            &#10094;
+          </button>
+          <button class="slider-button next" onclick="moveSlide(1)">
+            &#10095;
+          </button>
+        </section>
+      </section>
     </main>
-
 
     <script src="js/script.js"></script>
   </body>

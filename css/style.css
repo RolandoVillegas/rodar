@@ -1,9 +1,8 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 /* Importa la fuente "Poppins" y "Roboto" desde Google Fonts, con varios grosores disponibles. */
 
 * {
-  font-family: "Roboto"; /* Aplica la fuente "Poppins" a todos los elementos. */
+  font-family: "Poppins"; /* Aplica la fuente "Poppins" a todos los elementos. */
   margin: 0; /* Elimina el margen predeterminado de todos los elementos. */
   padding: 0; /* Elimina el relleno (padding) predeterminado de todos los elementos. */
   outline: none; /* Elimina cualquier contorno (outline) al hacer clic en los elementos. */
@@ -13,147 +12,240 @@
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fdae1c;
-    padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdae1c;
+  padding: 15px 20px;
 }
 
 .navbar-logo img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .navbar-menu {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .navbar-menu a {
-    color: #1c1c1c;
-    text-decoration: none;
-    font-weight: bold;
+  color: #1c1c1c;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .navbar-menu a:hover {
-    color: #151515;
-    letter-spacing: 1px;
+  color: #151515;
+  letter-spacing: 1px;
 }
 
 .navbar-toggle {
-    display: none;
-    font-size: 24px;
-    background: none;
-    border: none;
-    color: #292979;
-    cursor: pointer;
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #292979;
+  cursor: pointer;
 }
 
 /* Responsive styling */
+
 @media (max-width: 768px) {
-    .navbar-menu {
-        display: none;
-        flex-direction: column;
-        background-color: #e6e6e6;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-        z-index: 1000; /* Asegura que el menú esté encima del slider */
-    }
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #e6e6e6;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000; /* Asegura que el menú esté encima del slider */
+  }
 
-    .navbar-menu a {
-        padding: 10px;
-        border-top: 1px solid #e6e6e6;
-    }
+  .navbar-menu a {
+    padding: 10px;
+    border-top: 1px solid #e6e6e6;
+  }
 
-    .navbar-toggle {
-        display: block;
-    }
+  .navbar-toggle {
+    display: block;
+  }
+
+  .cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0; /* Elimina padding lateral para ocupar el ancho completo */
+    width: 100%; /* Asegura que ocupe todo el ancho de la pantalla */
+    box-sizing: border-box;
+  }
+
+  .card {
+    width: 100%; /* Ocupa todo el ancho de la sección */
+    margin: 0 0 20px 0; /* Solo margen inferior entre tarjetas */
+  }
+
+  .card-img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+    height: auto;
+  }
+}
+
+/* Estilos para el banner de la página principal */
+
+.wrap {
+  background-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.6),
+      rgb(0 0 0 / 0.6)
+    ),
+    url("../images/baner01.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 100%;
+  height: 50vh;
+}
+
+.wrap-texto {
+  color: #fff;
+  font-size: 1.1em;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.wrap-texto h1 {
+  font-size: 2em;
+  letter-spacing: -0.02em;
 }
 
 /* Estilos para el slider */
 
 .slider-container {
-    position: relative;
-    overflow: hidden;
-    margin: 20px auto;
-    width: 100%; /* Valor por defecto */
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto;
+  width: 100%; /* Valor por defecto */
 }
 
 /* Tamaño del slider para pantallas grandes (escritorio) */
 @media (min-width: 1024px) {
-    .slider-container {
-        width: 80%; /* Mostrar al 80% del ancho de la pantalla */
-    }
+  .slider-container {
+    width: 80%; /* Mostrar al 80% del ancho de la pantalla */
+  }
 }
 
 .slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slide {
-    min-width: 100%;
-    position: relative;
+  min-width: 100%;
+  position: relative;
 }
 
 .slide img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .caption {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: #ffffff;
-    font-size: 1.5em;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #ffffff;
+  font-size: 1.5em;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* Botones de navegación */
 .slider-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 24px;
-    border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
 }
 
 .slider-button.prev {
-    left: 10px;
+  left: 10px;
 }
 
 .slider-button.next {
-    right: 10px;
+  right: 10px;
 }
 
 /* Efecto hover en los botones */
 .slider-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Responsive para móviles */
-@media (max-width: 768px) {
-    .caption {
-        font-size: 1em;
-        bottom: 10px;
-        left: 10px;
-        padding: 5px;
-    }
-    .slider-button {
-        padding: 8px;
-        font-size: 20px;
-    }
+/* Estilos para la sección de las cards */
+.cards-section {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 30px; /* Padding en pantallas grandes */
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-img {
+  width: 80%;
+  height: auto;
+}
+
+.card-content {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-content h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-size: 1em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card-btn {
+  padding: 10px 20px;
+  background-color: #fdae1c;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.card-btn:hover {
+  background-color: #e89a16;
 }
