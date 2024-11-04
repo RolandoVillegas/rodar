@@ -49,50 +49,6 @@
   cursor: pointer;
 }
 
-/* Responsive styling */
-
-@media (max-width: 768px) {
-  .navbar-menu {
-    display: none;
-    flex-direction: column;
-    background-color: #e6e6e6;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%;
-    padding: 10px 0;
-    text-align: center;
-    z-index: 1000; /* Asegura que el menú esté encima del slider */
-  }
-
-  .navbar-menu a {
-    padding: 10px;
-    border-top: 1px solid #e6e6e6;
-  }
-
-  .navbar-toggle {
-    display: block;
-  }
-
-  .cards-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0; /* Elimina padding lateral para ocupar el ancho completo */
-    width: 100%; /* Asegura que ocupe todo el ancho de la pantalla */
-    box-sizing: border-box;
-  }
-
-  .card {
-    width: 100%; /* Ocupa todo el ancho de la sección */
-    margin: 0 0 20px 0; /* Solo margen inferior entre tarjetas */
-  }
-
-  .card-img {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
-    height: auto;
-  }
-}
 
 /* Estilos para el banner de la página principal */
 
@@ -197,32 +153,39 @@
 }
 
 /* Estilos para la sección de las cards */
+
 .cards-section {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   padding: 30px; /* Padding en pantallas grandes */
 }
 
 .card {
+  display: flex;
+  align-items: center;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 80%;
+}
+
+.card.reverse {
+  flex-direction: row-reverse; /* Invertir la disposición para la segunda tarjeta */
 }
 
 .card-img {
-  width: 80%;
+  width: 30%; /* Imagen ocupa el 40% del ancho de la tarjeta */
   height: auto;
+  object-fit: cover;
 }
 
 .card-content {
-  padding: 15px;
-  text-align: center;
+  padding: 20px;
+  width: 60%; /* Contenido ocupa el 60% del ancho de la tarjeta */
+  text-align: left;
 }
 
 .card-content h2 {
@@ -239,7 +202,7 @@
 .card-btn {
   padding: 10px 20px;
   background-color: #fdae1c;
-  color: #ffffff;
+  color: black;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -247,5 +210,43 @@
 }
 
 .card-btn:hover {
+    letter-spacing: 1px;
   background-color: #e89a16;
 }
+
+/* Responsive styling */
+
+@media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #e6e6e6;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1000; /* Asegura que el menú esté encima del slider */
+    }
+  
+    .navbar-menu a {
+      padding: 10px;
+      border-top: 1px solid #e6e6e6;
+    }
+  
+    .navbar-toggle {
+      display: block;
+    }
+  
+    .card{
+        width: 100%;
+    }
+    .card-content h2 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    
+
+  }
+  
