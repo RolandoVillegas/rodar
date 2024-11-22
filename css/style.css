@@ -11,6 +11,9 @@
   transition: 0.2s linear; /* Aplica una transición suave de 0.2 segundos a las propiedades CSS que cambian. */
 }
 
+.container {
+  background: linear-gradient(45deg, lightgray, white);
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -50,15 +53,8 @@
 }
 
 
-/* Estilos para el banner de la página principal */
-
+/* Estilo base para todos los banners */
 .wrap {
-  background-image: linear-gradient(
-      to right,
-      rgb(0 0 0 / 0.6),
-      rgb(0 0 0 / 0.6)
-    ),
-    url("../images/baner01.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -70,6 +66,27 @@
   height: 50vh;
 }
 
+/* Banner específico: index.html */
+.wrap.banner01 {
+  background-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.6),
+      rgb(0 0 0 / 0.6)
+    ),
+    url("../images/banner01.jpg"); 
+}
+
+/* Banner específico: what-is-carpooling.html */
+.wrap.banner02 {
+  background-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.6),
+      rgb(0 0 0 / 0.6)
+    ),
+    url("../images/banner02.jpg");
+}
+
+/* Texto dentro del banner */
 .wrap-texto {
   color: #fff;
   font-size: 1.1em;
@@ -82,6 +99,7 @@
   font-size: 2em;
   letter-spacing: -0.02em;
 }
+
 
 /* Estilos para el slider */
 
@@ -201,7 +219,7 @@
 
 .card-btn {
   padding: 10px 20px;
-  background-color: #fdae1c;
+  background-color: #FDAE1C;
   color: black;
   border: none;
   border-radius: 4px;
@@ -211,8 +229,62 @@
 
 .card-btn:hover {
     letter-spacing: 1px;
-  background-color: #e89a16;
+    background-color: #e89a16;
 }
+
+
+/* Estilo base para <a> y botones */
+.btn {
+  padding: 10px 20px;
+  background-color: #FDAE1C; /* Color base */
+  color: black; /* Texto negro */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-size: 0.9em;
+  text-decoration: none; /* Quitar subrayado para que parezca un botón */
+  display: inline-block; /* Esto es para que se comporte como un botón */
+}
+
+/* Hover: cambiar colores */
+.btn:hover {
+  background-color: #E5941A; /* Fondo más oscuro */
+  color: white; 
+}
+
+/* Focus: agregar un contorno para favorecer accesibilidad */
+.btn:focus {
+  outline: 2px solid #FDAE1C; /* Borde naranja */
+  outline-offset: 2px;
+}
+
+/* Active: efecto al presionar */
+.btn:active {
+  background-color: #CC7E14; /* Aún más oscuro */
+  color: white;
+}
+
+
+
+/* Estilos para formularios */
+form {
+  max-width: 600px;
+  padding: 1em;
+  gap: 1em;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+.form input {
+  font-size: 1em;
+  padding: 5px;
+}
+
 
 /* Responsive styling */
 

@@ -24,3 +24,10 @@ function moveSlide(direction) {
 // Mueve el slide automáticamente cada 5 segundos
 setInterval(() => moveSlide(1), 5000);
 
+
+// Evento para buscar viaje
+document.getElementById('btn-buscar-viaje').addEventListener('click', function() {
+    const form = document.getElementById('form-get-ride');
+    form.style.display = 'none';
+    alert('Formulario enviado');
+});
