@@ -1,3 +1,16 @@
+
+/* Importación de objetos que simulan registros de tablas en una base de datos, a partir del 
+módulo datos.js que asu vez llama a los módulos usuario.js, vehiculo.js, viaje.js y reserva.js */
+
+import { Usuario, Vehiculo, Viaje, Reserva } from './datos.js';
+
+/* Prueba para ver si funciona
+console.log(Usuario.obtenerUsuarios());
+console.log(Vehiculo.obtenerVehiculos());
+console.log(Viaje.obtenerViajes());
+console.log(Reserva.obtenerReservas());
+*/
+
 document.getElementById('navbarToggle').addEventListener('click', function() {
     const menu = document.getElementById('navbarMenu');
     menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
