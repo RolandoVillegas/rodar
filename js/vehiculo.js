@@ -15,6 +15,10 @@ class Vehiculo {
         const id = ++Vehiculo.ultimoId; // Incrementa el ID automáticamente
         const vehiculo = new Vehiculo(id, idUsuario, marca, modelo, patente, capacidad);
         Vehiculo.vehiculos.push(vehiculo);
+
+        // Guardar en localStorage
+        localStorage.setItem('vehiculos', JSON.stringify(Vehiculo.vehiculos));
+
         return vehiculo;
     }
 
@@ -28,6 +32,8 @@ class Vehiculo {
 
     static eliminarVehiculo(id) {
         Vehiculo.vehiculos = Vehiculo.vehiculos.filter(vehiculo => vehiculo.id !== id);
+        // Guardar en localStorage
+        localStorage.setItem('vehiculos', JSON.stringify(Vehiculo.vehiculos));
     }
 
     static modificarVehiculo(id, marca, modelo, patente, capacidad) {
@@ -39,6 +45,8 @@ class Vehiculo {
         vehiculoModificado.modelo = modelo;
         vehiculoModificado.patente = patente;
         vehiculoModificado.capacidad = capacidad;
+        // Guardar en localStorage
+        localStorage.setItem('vehiculos', JSON.stringify(Vehiculo.vehiculos));
     }
 }
 

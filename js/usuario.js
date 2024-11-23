@@ -19,6 +19,8 @@ class Usuario {
         const id = ++Usuario.ultimoId; // Generar ID único
         const nuevoUsuario = new Usuario(id, usuario, password, nombre, apellido, email, telefono);
         Usuario.usuarios.push(nuevoUsuario);
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(Usuario.usuarios));
         return nuevoUsuario;
     }
 
@@ -28,6 +30,8 @@ class Usuario {
 
     static eliminarUsuario(id) {
         Usuario.usuarios = Usuario.usuarios.filter(usuario => usuario.id !== id);
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(Usuario.usuarios));
     }
 
     static modificarUsuario(id, usuario, password, nombre, apellido, email, telefono) {
@@ -44,6 +48,9 @@ class Usuario {
         usuarioModificado.apellido = apellido;
         usuarioModificado.email = email;
         usuarioModificado.telefono = telefono;
+
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(Usuario.usuarios));
     }
 
     static obtenerUsuario(id) {

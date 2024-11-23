@@ -16,6 +16,8 @@ class Viaje {
         const id = ++Viaje.ultimoId; // Incrementa automáticamente el ID
         const viaje = new Viaje(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada);
         Viaje.viajes.push(viaje);
+        // Guardar en localStorage
+        localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
         return viaje;
     }
 
@@ -29,6 +31,8 @@ class Viaje {
 
     static eliminarViaje(id) {
         Viaje.viajes = Viaje.viajes.filter(viaje => viaje.id !== id);
+        // Guardar en localStorage
+        localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
     }
 
     static modificarViaje(id, origen, destino, salidaFechaHora, duracionEstimada) {
@@ -40,6 +44,8 @@ class Viaje {
         viajeModificado.destino = destino;
         viajeModificado.salidaFechaHora = salidaFechaHora; // Cambio de nombre
         viajeModificado.duracionEstimada = duracionEstimada;
+        // Guardar en localStorage
+        localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
     }
 }
 
