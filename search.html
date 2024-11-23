@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rodar Viajes Compartidos</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="index.html"
+            ><img src="images/rodar-logo.png" alt="RODAR viajes compartidos"
+          /></a>
+        </div>
+        <div class="navbar-menu" id="navbarMenu">
+          <a href="search.html">Buscar viaje</a>
+          <a href="#ofrecer-transporte">Ofrecer transporte</a>
+          <a href="#que-es-rodar">¿Qué es Rodar?</a>
+          <a href="#login">Login</a>
+        </div>
+        <button class="navbar-toggle" id="navbarToggle">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container">
+        <div id="search-section">
+          <!-- Sección de búsqueda -->
+          <section id="form-search-trip" class="cards-section">
+            <form>
+              <h2>Buscar viaje</h2>
+              <p>
+                Buscá dónde querés ir y reducí tus gastos. Tu bolsillo,
+                agradecido.
+              </p>
+              <label for="origen">Origen</label>
+              <input
+                type="text"
+                id="origen"
+                name="origen"
+                placeholder="Desde dónde inicias tu viaje"
+              />
+              <label for="destino">Destino</label>
+              <input
+                type="text"
+                id="destino"
+                name="destino"
+                placeholder="Escribí dónde querés ir"
+              />
+
+              <button id="btn-buscar" class="btn btn-primary" type="button">
+                Buscar
+              </button>
+
+              <button id="btn-limpiar" class="btn btn-secondary" type="button">
+                Limpiar resultados
+              </button>
+
+              <div id="tabla-de-ofertas-de-viaje" class="table"></div>
+            </form>
+          </section>
+        </div>
+
+        <!-- Sección de detalles del viaje -->
+        <div id="pick-a-trip-section" class="cards-section" hidden>
+          <section id="pick-a-trip" hidden>
+            <h2>Detalle del viaje</h2>
+            <div id="detalle-viaje"></div>
+            <button id="btn-tomar-viaje" class="btn btn-primary">
+              Tomar este viaje
+            </button>
+            <button id="btn-volver" class="btn">Volver a los resultados</button>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

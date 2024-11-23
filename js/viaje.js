@@ -26,11 +26,11 @@ class Viaje {
     }
 
     static obtenerViaje(id) {
-        return Viaje.viajes.find(viaje => viaje.id === id);
+        return Viaje.viajes.find(viaje => viaje.id === +id); // Convertir id a número, porque si no, no funciona el método.
     }
 
     static eliminarViaje(id) {
-        Viaje.viajes = Viaje.viajes.filter(viaje => viaje.id !== id);
+        Viaje.viajes = Viaje.viajes.filter(viaje => viaje.id !== +id); // Convertir id a número, porque si no, no funciona el método.
         // Guardar en localStorage
         localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
     }
