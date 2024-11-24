@@ -10,13 +10,18 @@
     <header>
       <nav class="navbar">
         <div class="navbar-logo">
-          <img src="images/rodar-logo.png" alt="RODAR viajes compartidos" />
+          <a href="index.html"
+            ><img src="images/rodar-logo.png" alt="RODAR viajes compartidos"
+          /></a>
         </div>
         <div class="navbar-menu" id="navbarMenu">
           <a href="search.html">Buscar viaje</a>
           <a href="#ofrecer-transporte">Ofrecer transporte</a>
           <a href="what-is-carpooling.html">¿Qué es Rodar?</a>
-          <a href="#login">Login</a>
+          <!-- Aquí va la opción Login o Mis viajes/dashboard -->
+          <span id="menu-dynamic"></span>
+          <!-- El botón de logout se muestra solo si hay un usuario logueado. El botón se oculta al inicio -->
+          <a href="#" id="btn-logout" style="display: none;">Cerrar sesión</a>
         </div>
         <button class="navbar-toggle" id="navbarToggle">☰</button>
       </nav>
@@ -72,7 +77,6 @@
               </p>
 
               <a href="search.html" class="btn btn-primary">Buscar viaje</a>
-
             </div>
           </div>
           <div class="card reverse">
@@ -93,7 +97,7 @@
 
           <div class="card">
             <img
-              src="images/card-image1.jpg"
+              src="images/card-image4.jpg"
               alt="Imagen de la tarjeta izquierda, para buscar tu destino"
               class="card-img"
             />
@@ -142,6 +146,6 @@
       </section>
     </main>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/main.js" defer></script>
   </body>
 </html>

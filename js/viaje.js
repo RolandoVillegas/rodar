@@ -2,7 +2,7 @@ class Viaje {
     static viajes = []; // Simula la tabla Viaje
     static ultimoId = 0; // Contador para IDs únicos
 
-    constructor(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada) {
+    constructor(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada, reservado) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idVehiculo = idVehiculo;
@@ -10,11 +10,12 @@ class Viaje {
         this.destino = destino;
         this.salidaFechaHora = salidaFechaHora; // Cambio de nombre
         this.duracionEstimada = duracionEstimada;
+        this.reservado = reservado; // Puede valer si=el viaje está reservado, no=el viaje no está reservado
     }
 
-    static crearViaje(idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada) {
+    static crearViaje(idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada, reservado) {
         const id = ++Viaje.ultimoId; // Incrementa automáticamente el ID
-        const viaje = new Viaje(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada);
+        const viaje = new Viaje(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada, reservado);
         Viaje.viajes.push(viaje);
         // Guardar en localStorage
         localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
@@ -22,7 +23,9 @@ class Viaje {
     }
 
     static obtenerViajes() {
-        return Viaje.viajes;
+        // Retorna solo los viajes que no están reservados
+        return Viaje.viajes.filter(viaje => viaje.reservado.includes("no"));
+        
     }
 
     static obtenerViaje(id) {
@@ -35,7 +38,7 @@ class Viaje {
         localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
     }
 
-    static modificarViaje(id, origen, destino, salidaFechaHora, duracionEstimada) {
+    static modificarViaje(id, origen, destino, salidaFechaHora, duracionEstimada, reservado) {
         const viajeModificado = Viaje.obtenerViaje(id);
         if (!viajeModificado) {
             throw new Error(`Viaje con id ${id} no encontrado.`);
@@ -44,9 +47,30 @@ class Viaje {
         viajeModificado.destino = destino;
         viajeModificado.salidaFechaHora = salidaFechaHora; // Cambio de nombre
         viajeModificado.duracionEstimada = duracionEstimada;
+        viajeModificado.reservado = reservado;
         // Guardar en localStorage
         localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
     }
+
+    static marcarViajeReservado(id) {
+        const viajeModificado = Viaje.obtenerViaje(id);
+        if (!viajeModificado) {
+            throw new Error(`Viaje con id ${id} no encontrado.`);
+        }
+        viajeModificado.reservado = "si";
+        // Guardar en localStorage
+        localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
+    }
+
+    static marcarViajeNoReservado(id) {
+        const viajeModificado = Viaje.obtenerViaje(id);
+        if (!viajeModificado) {
+            throw new Error(`Viaje con id ${id} no encontrado.`);
+        }
+        viajeModificado.reservado = "no";
+        // Guardar en localStorage
+        localStorage.setItem('viajes', JSON.stringify(Viaje.viajes));
+    }   
 }
 
 export default Viaje;

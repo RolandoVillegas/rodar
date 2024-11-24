@@ -17,9 +17,9 @@ function inicializarDatos() {
         const vehiculo01 = Vehiculo.crearVehiculo(usuario01.id, "Toyota", "Corolla", "AG900AA", 4);
 
         // Crear viajes
-        Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Buenos Aires", "2024-12-01T08:00:00", 3);
-        Viaje.crearViaje(usuario01.id, vehiculo01.id, "Buenos Aires", "Cipolletti", "2024-12-15T10:00:00", 5);
-        Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Neuquén", "2024-12-17T14:00:00", 8);
+        Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Buenos Aires", "2024-12-01T08:00:00", 20, "no");
+        Viaje.crearViaje(usuario01.id, vehiculo01.id, "Buenos Aires", "Cipolletti", "2024-12-15T10:00:00", 20, "no");
+        Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Neuquén", "2024-12-17T14:00:00", 1, "no");
 
         // Crear reservas
         Reserva.crearReserva(usuario02.id, 1, 2, "2024-11-20T10:00:00"); // María reserva 2 asientos en el primer viaje

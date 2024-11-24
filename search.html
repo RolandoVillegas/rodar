@@ -18,7 +18,10 @@
           <a href="search.html">Buscar viaje</a>
           <a href="#ofrecer-transporte">Ofrecer transporte</a>
           <a href="#que-es-rodar">¿Qué es Rodar?</a>
-          <a href="#login">Login</a>
+          <!-- Aquí va la opción Login o Mis viajes/dashboard -->
+          <span id="menu-dynamic"></span>
+          <!-- El botón de logout se muestra solo si hay un usuario logueado. El botón se oculta al inicio -->
+          <a href="#" id="btn-logout" style="display: none;">Cerrar sesión</a>
         </div>
         <button class="navbar-toggle" id="navbarToggle">☰</button>
       </nav>
@@ -28,8 +31,8 @@
       <section class="container">
         <div id="search-section">
           <!-- Sección de búsqueda -->
-          <section id="form-search-trip" class="cards-section">
-            <form>
+          <section id="form-search-trip-section" class="cards-section">
+            <form id="form-search-trip">
               <h2>Buscar viaje</h2>
               <p>
                 Buscá dónde querés ir y reducí tus gastos. Tu bolsillo,
@@ -64,15 +67,19 @@
         </div>
 
         <!-- Sección de detalles del viaje -->
-        <div id="pick-a-trip-section" class="cards-section" hidden>
-          <section id="pick-a-trip" hidden>
+        <div id="pick-a-trip-section" class="cards-section" style="display: none;">
+          <form id="pick-a-trip" style="display: none;"></form>
             <h2>Detalle del viaje</h2>
             <div id="detalle-viaje"></div>
             <button id="btn-tomar-viaje" class="btn btn-primary">
               Tomar este viaje
             </button>
             <button id="btn-volver" class="btn">Volver a los resultados</button>
-          </section>
+            <a href="index.html" id="btn-inicio" class="btn" style="display: none;"
+            >Volver al inicio</a>
+            <!-- <button id="btn-inicio" class="btn" style="display: none;">Volver al inicio</button> -->
+            <div id="error-seleccionar-viaje" class="error" hidden></div>
+          </form>
         </div>
       </section>
     </main>
