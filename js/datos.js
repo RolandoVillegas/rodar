@@ -22,8 +22,8 @@ function inicializarDatos() {
         Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Neuquén", "2024-12-17T14:00:00", 1, "no");
 
         // Crear reservas
-        Reserva.crearReserva(usuario02.id, 1, 2, "2024-11-20T10:00:00"); // María reserva 2 asientos en el primer viaje
-        Reserva.crearReserva(usuario03.id, 2, 1, "2024-11-21T15:00:00"); // Carlos reserva 1 asiento en el segundo viaje
+        Reserva.crearReserva(1, usuario02.id, 2, "2024-11-20T10:00:00"); // María reserva 2 asientos en el primer viaje
+        Reserva.crearReserva(2, usuario03.id, 1, "2024-11-21T15:00:00"); // Carlos reserva 1 asiento en el segundo viaje
 
         // Guardar datos en localStorage
         localStorage.setItem('usuarios', JSON.stringify(Usuario.usuarios));

@@ -31,6 +31,11 @@ class Viaje {
         return Viaje.viajes.find(viaje => viaje.id === +id); // Convertir id a número, porque si no, no funciona el método.
     }
 
+    // Obtener todos los viajes de un usuario
+    static obtenerViajePorUsuario(idUsuario) {
+        return Viaje.viajes.filter(viaje => viaje.idUsuario === idUsuario);
+    }
+
     static eliminarViaje(id) {
         Viaje.viajes = Viaje.viajes.filter(viaje => viaje.id !== +id); // Convertir id a número, porque si no, no funciona el método.
         // Guardar en localStorage

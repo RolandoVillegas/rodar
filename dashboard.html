@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rodar Viajes Compartidos</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="index.html"
+            ><img src="images/rodar-logo.png" alt="RODAR viajes compartidos"
+          /></a>
+        </div>
+        <div class="navbar-menu" id="navbarMenu">
+          <a href="search.html">Buscar viaje</a>
+          <a href="offer.html">Ofrecer transporte</a>
+          <a href="#que-es-rodar">¿Qué es Rodar?</a>
+          <!-- Aquí va la opción Login o Mis viajes/dashboard -->
+          <span id="menu-dynamic"></span>
+          <!-- El botón de logout se muestra solo si hay un usuario logueado. El botón se oculta al inicio -->
+          <a href="#" id="btn-logout" style="display: none">Cerrar sesión</a>
+        </div>
+        <button class="navbar-toggle" id="navbarToggle">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container">
+        <div id="dashboard">
+          <section id="dashboard-section" class="cards-section">
+
+            <!-- En el siguiente formulario se mostrarán los datos del usuario que está logeado. -->
+            <!-- Sus datos de cuenta, sus vehículos y sus viajes ofrecidos y reservados. -->
+
+            <form id="form-dashboard" class="form">
+
+                <div id="mensaje-bienvenida" class="form" style="display: none"></div>
+                <div id="datos-de-usuario" style="display: none"></div> 
+                <div id="datos-de-vehiculos" style="display: none"></div>
+                <div id="datos-de-reservas" class="table" style="display: none"></div>
+                <a
+                href="search.html"
+                id="btn-inicio"
+                class="btn btn-primary"
+                >Buscar viajes para compartir</a>
+                <div id="datos-de-ofertas-de-viajes" class="table" style="display: none"></div>
+
+
+
+
+
+            </form>
+
+
+          </section>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

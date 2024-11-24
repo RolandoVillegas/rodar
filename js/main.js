@@ -262,12 +262,24 @@ document.addEventListener("DOMContentLoaded", () => {
       // para que primero haga un login
       if (localStorage.getItem("usuario")) {
         // Usuario logueado: guardar la reserva
-        const usuarioId = localStorage.getItem("usuarioId");
+        const usuarioId = parseInt(localStorage.getItem("usuarioId"));
 
         // Obtener el id del viaje del localstorage
-        const viajeIdLs = localStorage.getItem("viajeId");
+        const viajeIdLs = parseInt(localStorage.getItem("viajeId"));
 
-        Reserva.crearReserva(usuarioId, viajeIdLs, 1, 0, "2024-11-21T15:00:00");
+        // Fecha en la que se hizo la reserva
+        const fechaReserva = new Date();
+        // Obtener la hora actual
+        const horaReserva = fechaReserva.getHours();
+        // Obtener la minuta actual
+        const minutaReserva = fechaReserva.getMinutes();
+        // Obtener la hora y minuta actuales en formato de string
+        const horaReservaFormateada = horaReserva.toString().padStart(2, "0");
+        const minutaReservaFormateada = minutaReserva.toString().padStart(2, "0");
+        const fechaReservaFormateada = `${fechaReserva.getFullYear()}-${(fechaReserva.getMonth() + 1).toString().padStart(2, "0")}-${fechaReserva.getDate().toString().padStart(2, "0")}T${horaReservaFormateada}:${minutaReservaFormateada}:00`;
+        console.log(fechaReservaFormateada);
+
+        Reserva.crearReserva(usuarioId, viajeIdLs, 1, fechaReservaFormateada);
         Viaje.marcarViajeReservado(viajeIdLs);
         console.log(Reserva.reservas);
         console.log(Viaje.viajes);
@@ -289,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const btnInicio = document.getElementById("btn-inicio");
         btnInicio.style.display = "block";
         errorSeleccionarViaje.innerHTML = `
-  <img src="images/success.gif" alt="Éxito" style="width: 80px; height: 63px; vertical-align: middle; margin-right: 10px;">
+  <img src="images/success02.gif" alt="Éxito" style="width: 80px; height: 63px; vertical-align: middle; margin-right: 10px;">
   ¡Reserva guardada!
 `;
         errorSeleccionarViaje.hidden = false;
@@ -366,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Validar si el usuario está logueado
     if (!usuarioId) {
-        // Si el usuario no está logueado, mostrar un mensaje de error, le pide que se loguee y oculta el formulario.
+      // Si el usuario no está logueado, mostrar un mensaje de error, le pide que se loguee y oculta el formulario.
       mensajeOferta.innerHTML = `
           <p>No estás conectado al sitio. Por favor, <a href="login.html">iniciá sesión</a> para publicar una oferta de transporte.</p>
         `;
@@ -384,23 +396,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Evaluar si no tiene vehículo
     if (!tieneVehiculo) {
       mensajeOferta.innerHTML = `
-          <p>No tenés un vehículo registrado en tu cuenta. Por favor, agregá un vehículo para poder ofrecer transporte.</p>
+          <p>No tenés un vehículo registrado. Por favor, ingresá a tu cuenta y agregá un vehículo para poder ofrecer transporte.</p>
         `;
       mensajeOferta.style.display = "block";
       if (formOffer) formOffer.style.display = "none"; // Ocultar formulario
       return;
     }
-    
+
     // Si pasa las dos validaciones, mostrar el formulario de oferta
     mensajeOferta.style.display = "none";
     if (formOffer) formOffer.style.display = "block";
     const btnPublicar = document.getElementById("btn-publicar");
-    
-   if (btnPublicar) {
-    btnPublicar.addEventListener("click", () => {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado
 
-    // Obtener los datos del formulario de oferta
+    if (btnPublicar) {
+      btnPublicar.addEventListener("click", () => {
+        event.preventDefault(); // Prevenir el comportamiento predeterminado
+
+        // Obtener los datos del formulario de oferta
         const origen = document.getElementById("origen").value.trim();
         const destino = document.getElementById("destino").value.trim();
         const salida = document.getElementById("salida").value.trim();
@@ -410,27 +422,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Verificar que los campos estén completos
         if (!origen || !destino || !salida || !duracion) {
-            document.getElementById("error-publicar").textContent = `Los campos no están completos.`;
-            document.getElementById("error-publicar").style.display = "flex";
-            return;
+          document.getElementById(
+            "error-publicar"
+          ).textContent = `Los campos no están completos.`;
+          document.getElementById("error-publicar").style.display = "flex";
+          return;
         }
-
 
         // Verificar que salida sea una fecha y hora válida
         if (!salida.includes("T")) {
-            document.getElementById("error-publicar").textContent = `La fecha y hora de salida no es válida.`;
-            document.getElementById("error-publicar").style.display = "flex";
-            return;
+          document.getElementById(
+            "error-publicar"
+          ).textContent = `La fecha y hora de salida no es válida.`;
+          document.getElementById("error-publicar").style.display = "flex";
+          return;
         }
 
+        // Control de datos antes de crear objeto
+        /*
         console.log(origen);
         console.log(destino);
         console.log(salida);
         console.log(duracion);
         console.log(usuarioId);
         console.log(idVehiculo);
+        */
 
-        // Deshabilita todos los campos del formulario
+        // Agregar la oferta de viaje en la clase Viaje
+        Viaje.crearViaje(
+          idUsuario,
+          idVehiculo,
+          origen,
+          destino,
+          salida,
+          duracion,
+          "no"
+        );
+        console.log(Viaje.viajes);
+
+        // Deshabilita todos los campos del formulario para que el usuario
+        // no pueda hacer otra oferta con los mismos datos
         formOffer.querySelectorAll("input").forEach((input) => {
           input.disabled = true;
         });
@@ -439,15 +470,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("error-publicar").style.display = "none";
 
         // Muestra el mensaje de éxito
-        document.getElementById("mensaje-publicar-ok").textContent = `¡Oferta publicada con éxito!`;
-
+        document.getElementById(
+          "mensaje-publicar-ok"
+        ).textContent = `¡Oferta publicada con éxito!`;
 
         document.getElementById("mensaje-publicar-ok").innerHTML = `
   <img src="images/success.gif" alt="Éxito" style="width: 80px; height: 63px; vertical-align: middle; margin-right: 10px;">
   ¡Oferta publicada con éxito!
 `;
-document.getElementById("mensaje-publicar-ok").style.display = "block";
-document.getElementById("mensaje-publicar-ok").hidden = false;
+        document.getElementById("mensaje-publicar-ok").style.display = "block";
+        document.getElementById("mensaje-publicar-ok").hidden = false;
 
         // Ocultar el botón Publicar oferta
         const btnPublicar = document.getElementById("btn-publicar");
@@ -456,18 +488,181 @@ document.getElementById("mensaje-publicar-ok").hidden = false;
         // Mostrar el botón de Volver al inicio
         const btnInicio = document.getElementById("btn-inicio");
         btnInicio.style.display = "block";
-
-        // Agregar la oferta de viaje en la clase Viaje
-        Viaje.crearViaje(idUsuario, idVehiculo, origen, destino, salida, duracion, "no");
-       console.log(Viaje.viajes);
-
-
-    });
-   }
-
-
-
-
+      });
+    }
   } // Fin de la comprobación de si estamos en offer.html (no borrar!)
+});
 
+
+/*******************************************************************************************************************************************/
+/* Sección para mostrar el tablero con los datos del usuario (dashboard.html) */
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Verificar si estamos en dashboard.html
+    if (window.location.pathname.includes("dashboard.html")) {
+    
+        // Recuperar el id del usuarios desde LocalStorage
+        const usuarioId = parseInt(localStorage.getItem("usuarioId"));
+        console.log(usuarioId);
+
+        // Obtener los datos del usuario desde la clase Usuario
+        const usuario = Usuario.obtenerUsuario(usuarioId);
+        console.log(usuario);
+
+        // Buscar si el usuario tiene un vehículo (devuelve un array)
+        const vehículosDelUsuario = Vehiculo.obtenerVehiculoPorUsuario(usuarioId);
+        console.log(vehículosDelUsuario);
+        
+        // Buscar si el usuario tiene viajes ofrecidos (devuelve un array)
+        const viajesOfrecidosDelUsuario = Viaje.obtenerViajePorUsuario(parseInt(usuarioId));
+        console.log("Viajes ofrecidos del usuario:");
+        console.log(viajesOfrecidosDelUsuario);
+
+        // Buscar si el usuario tiene viajes reservados (devuelve un array)
+        console.log("Todas las reservas:");
+        console.log(Reserva.obtenerReservas());
+        const viajesReservadosDelUsuario = Reserva.obtenerReservasPorUsuario(parseInt(usuarioId));
+        console.log("Viajes reservados del usuario:");
+        console.log(viajesReservadosDelUsuario);
+
+        // Dar la bienvenida a el usuario
+        const nombre = usuario.nombre;
+        const apellido = usuario.apellido;
+        const email = usuario.email;
+        const telefono = usuario.telefono;
+        
+
+        // Mostrar el mensaje de bienvenida
+        document.getElementById("mensaje-bienvenida").innerHTML = `
+  <img src="images/success03.gif" alt="Éxito" style="width: 80px; height: 63px; vertical-align: middle; margin-right: 10px;">
+  <h2>¡Hola, ${nombre} ${apellido}!</h2>
+  <br>
+  <p>Este es el panel de administración de tu cuenta, aquí podrás gestionar tus viajes.</p>
+  <br>
+  <p>¡Bienvenido a <strong>RODAR</strong>!</p>
+`;
+        document.getElementById("mensaje-bienvenida").style.display = "block";
+
+        // Mostrar los datos del usuario
+        const datosDelUsuario = document.getElementById("datos-de-usuario");
+        datosDelUsuario.innerHTML = `
+            <h3>Datos de contacto</h3>
+            <p>Nombre: ${nombre} </p>
+            <p>Apellido: ${apellido}</p>
+            <p>Email: ${email}</p>
+            <p>Teléfono: ${telefono}</p>
+        `;
+        datosDelUsuario.style.display = "block";
+        datosDelUsuario.hidden = false;
+        
+        // Mostrar los datos del vehiculo si el largo del array vehículosDelUsuario es mayor a 0
+        if (vehículosDelUsuario.length > 0) {
+            const datosDelVehiculo = document.getElementById("datos-de-vehiculos");
+            // Recorrer el array vehiculosDelUsuario y mostrar los datos de los vehiculos en formato de tabla
+            for (let i = 0; i < vehículosDelUsuario.length; i++) {
+                const marca = vehículosDelUsuario[i].marca;
+                const modelo = vehículosDelUsuario[i].modelo;
+                const patente = vehículosDelUsuario[i].patente;
+                const capacidad = vehículosDelUsuario[i].capacidad;
+                
+                datosDelVehiculo.innerHTML += `
+                    <h3>Datos del vehículo</h3>
+                    <p>Marca: ${marca}</p>
+                    <p>Modelo: ${modelo}</p>
+                    <p>Patente: ${patente}</p>
+                    <p>Capacidad: ${capacidad}</p>
+                    <br>
+                `;
+            }   
+            datosDelVehiculo.style.display = "block";
+            datosDelVehiculo.hidden = false;
+        } 
+
+        // Mostrar si tiene viajes reservados
+        const datosReservas = document.getElementById("datos-de-reservas");
+        if (viajesReservadosDelUsuario.length > 0) {
+            
+            // Recorrer viajesReservadosDelUsuario y mostrar los datos de los viajes reservados en formato de tabla
+            let tablaReservasHTML = `
+                <h3>Viajes reservados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Salida</th>
+                            <th>Duración</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody> 
+            `;
+            for (let i = 0; i < viajesReservadosDelUsuario.length; i++) {
+                // Para cada viaje, con la propiedad viajesReservadosDelUsuario[i].id, obtener el objeto viaje y mostrar su información en la tabla
+                const viaje = Viaje.obtenerViaje(viajesReservadosDelUsuario[i].id);
+                const reserva = viajesReservadosDelUsuario[i];
+                tablaReservasHTML += `
+                    <tr>
+                        <td>${viaje.id}</td>
+                        <td>${viaje.origen}</td>
+                        <td>${viaje.destino}</td>
+                        <td>${viaje.salidaFechaHora.slice(0, 10)} - ${viaje.salidaFechaHora.slice(11, 16)}</td>
+                        <td>${viaje.duracionEstimada} horas</td>
+                        
+                    </tr>   
+                `;
+            }
+            tablaReservasHTML += "</tbody></table><br>";
+            datosReservas.innerHTML = tablaReservasHTML;
+            datosReservas.style.display = "block";
+
+        }
+
+        // Mostrar si tiene viajes ofrecidos
+        const datosOfertas = document.getElementById("datos-de-ofertas-de-viajes");
+        if (viajesOfrecidosDelUsuario.length > 0) {
+            
+            // Recorrer viajesReservadosDelUsuario y mostrar los datos de los viajes reservados en formato de tabla
+            let tablaOfertasHTML = `
+                <h3>Viajes ofrecidos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Salida</th>
+                            <th>Duración</th>
+                            <th>Ofrecido</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+            `;
+            for (let i = 0; i < viajesOfrecidosDelUsuario.length; i++) {
+                // Para cada viaje, con la propiedad viajesReservadosDelUsuario[i].id, obtener el objeto viaje y mostrar su información en la tabla
+                const viaje = Viaje.obtenerViaje(viajesOfrecidosDelUsuario[i].id);
+                const oferta = viajesOfrecidosDelUsuario[i];
+                tablaOfertasHTML += `
+                    <tr>    
+                        <td>${viaje.id}</td>
+                        <td>${viaje.origen}</td>
+                        <td>${viaje.destino}</td>
+                        <td>${viaje.salidaFechaHora.slice(0, 10)} - ${viaje.salidaFechaHora.slice(11, 16)}</td>
+                        <td>${viaje.duracionEstimada} horas</td>
+                        <td>${oferta.ofertado}</td>
+                    </tr>   
+                `;
+            }
+            tablaOfertasHTML += "</tbody></table><br>";
+            datosOfertas.innerHTML = tablaOfertasHTML;
+            datosOfertas.style.display = "block";
+
+        }
+
+
+
+
+    }
+    
 });

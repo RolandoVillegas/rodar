@@ -16,7 +16,7 @@ class Usuario {
         if (Usuario.usuarios.some(u => u.usuario === usuario)) {
             throw new Error("El usuario ya existe.");
         }
-        const id = ++Usuario.ultimoId; // Generar ID único
+        const id = Usuario.usuarios.length + 1; // Generar ID único
         const nuevoUsuario = new Usuario(id, usuario, password, nombre, apellido, email, telefono);
         Usuario.usuarios.push(nuevoUsuario);
         // Guardar en localStorage

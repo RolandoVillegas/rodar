@@ -11,7 +11,7 @@ class Reserva {
     }
 
     static crearReserva(idUsuario, idViaje, cantidadAsientos, fechaReserva) {
-        const id = ++Reserva.ultimoId; // Incrementa automáticamente el ID
+        const id = Reserva.reservas.length + 1; // Incrementa automáticamente el ID
         const reserva = new Reserva(id, idUsuario, idViaje, cantidadAsientos, fechaReserva);
         Reserva.reservas.push(reserva);
         // Guardar en localStorage
@@ -24,7 +24,11 @@ class Reserva {
     }
 
     static obtenerReserva(id) {
-        return Reserva.reservas.find(reserva => reserva.id === id);
+        return Reserva.reservas.find(reserva => reserva.id === id); 
+    }
+
+    static obtenerReservasPorUsuario(idUsuario) {
+        return Reserva.reservas.filter(reserva => reserva.idUsuario === idUsuario);
     }
 
     static eliminarReserva(id) {

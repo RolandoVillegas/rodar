@@ -12,7 +12,7 @@ class Vehiculo {
     }
 
     static crearVehiculo(idUsuario, marca, modelo, patente, capacidad) {
-        const id = ++Vehiculo.ultimoId; // Incrementa el ID automáticamente
+        const id = Vehiculo.vehiculos.length + 1; // Incrementa el ID automáticamente
         const vehiculo = new Vehiculo(id, idUsuario, marca, modelo, patente, capacidad);
         Vehiculo.vehiculos.push(vehiculo);
 
@@ -28,6 +28,11 @@ class Vehiculo {
 
     static obtenerVehiculo(id) {
         return Vehiculo.vehiculos.find(vehiculo => vehiculo.id === id);
+    }
+
+    // Obtener todos los vehículos de un usuario
+    static obtenerVehiculoPorUsuario(idUsuario) {
+        return Vehiculo.vehiculos.filter(vehiculo => vehiculo.idUsuario === idUsuario);
     }
 
     static eliminarVehiculo(id) {
