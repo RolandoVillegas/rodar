@@ -304,22 +304,43 @@
 /***********************************************************************************************/
 /* Estilos para formularios */
 form {
+  display: flex;
+  flex-direction: column;
   max-width: 900px;
   padding: 10px;
-  gap: 1em;
+  gap: 20px;
   margin: 0 auto;
   margin-bottom: 1em;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  
+  border-radius: 8px;
   background-color: #fafafa;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle estilo */
+}
+
+.form label {
+  font-weight: bold; /* Resalta las etiquetas */
+  margin-bottom: 5px; /* Espacio entre etiqueta y campo */
 }
 
 .form input {
   font-size: 1em;
-  padding: 5px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Borde visible pero suave */
+  border-radius: 5px; /* Bordes redondeados */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  box-sizing: border-box; /* Incluye padding y bordes en el ancho total */
   
 }
+
+/***********************************************************************************************/
+/* Estilo para mensajes al usuario */
+.error {
+  color: red;
+  text-align: center;
+}
+
+
 
 /***********************************************************************************************/
 /* Estilo para tablas */

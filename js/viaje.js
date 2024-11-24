@@ -1,6 +1,5 @@
 class Viaje {
     static viajes = []; // Simula la tabla Viaje
-    static ultimoId = 0; // Contador para IDs únicos
 
     constructor(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada, reservado) {
         this.id = id;
@@ -10,11 +9,11 @@ class Viaje {
         this.destino = destino;
         this.salidaFechaHora = salidaFechaHora; // Cambio de nombre
         this.duracionEstimada = duracionEstimada;
-        this.reservado = reservado; // Puede valer si=el viaje está reservado, no=el viaje no está reservado
+        this.reservado = reservado || "no"; // Puede valer si=el viaje está reservado, no=el viaje no está reservado
     }
 
     static crearViaje(idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada, reservado) {
-        const id = ++Viaje.ultimoId; // Incrementa automáticamente el ID
+        const id = Viaje.viajes.length + 1; // Incrementa automáticamente el ID
         const viaje = new Viaje(id, idUsuario, idVehiculo, origen, destino, salidaFechaHora, duracionEstimada, reservado);
         Viaje.viajes.push(viaje);
         // Guardar en localStorage

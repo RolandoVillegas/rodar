@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rodar Viajes Compartidos</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="index.html"
+            ><img src="images/rodar-logo.png" alt="RODAR viajes compartidos"
+          /></a>
+        </div>
+        <div class="navbar-menu" id="navbarMenu">
+          <a href="search.html">Buscar viaje</a>
+          <a href="offer.html">Ofrecer transporte</a>
+          <a href="#que-es-rodar">¿Qué es Rodar?</a>
+          <!-- Aquí va la opción Login o Mis viajes/dashboard -->
+          <span id="menu-dynamic"></span>
+          <!-- El botón de logout se muestra solo si hay un usuario logueado. El botón se oculta al inicio -->
+          <a href="#" id="btn-logout" style="display: none">Cerrar sesión</a>
+        </div>
+        <button class="navbar-toggle" id="navbarToggle">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container">
+        <div id="offer-section">
+          <section id="form-offer-section" class="cards-section">
+            <form id="form-message" class="form-offer">
+              <h1>Publicá una oferta de transporte</h1>
+              <p>
+                ¿Viajás y querés compartir el viaje? <strong>RODAR</strong> te
+                ayuda.
+              </p>
+              <p>
+                Publicá desde dónde salís, hacia donde vas y cuándo lo hacés. No
+                importa si el viaje es corto o largo, compartilo con otros
+                usuarios y ¡todos ganamos!
+              </p>
+            </form>
+            <!-- Mensajes de error -->
+            <div id="mensaje-oferta" class="form" style="display: none"></div>
+
+            <!-- Formulario de publicación de oferta de viaje -->
+            <form id="form-offer" class="form">
+              <label for="origen">Origen</label>
+              <input
+                type="text"
+                id="origen"
+                name="origen"
+                placeholder="Desde dónde salís"
+                required
+              />
+              <label for="destino">Destino</label>
+              <input
+                type="text"
+                id="destino"
+                name="destino"
+                placeholder="Hacia dónde vas"
+                required
+              />
+              <label for="salida">Fecha y hora de salida</label>
+              <input type="datetime-local" id="salida" name="salida" required />
+              <label for="duracion">Duración estimada (horas)</label>
+              <input
+                type="number"
+                id="duracion"
+                name="duracion"
+                min="1"
+                placeholder="Duración"
+                required
+              />
+              <div
+                id="error-publicar"
+                class="error"
+                style="display: none"
+              ></div>
+              <div
+                id="mensaje-publicar-ok"
+                class="sucessful"
+                style="display: none"
+              ></div>
+              <button id="btn-publicar" class="btn btn-primary" type="submit">
+                Publicar oferta
+              </button>
+              <a href="index.html" id="btn-inicio" class="btn btn-primary" style="display: none;"
+              >Volver al inicio</a>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Script para formatear la fecha y hora de salida por defecto (día y hora actual)
+      // Obtener el campo
+      const datetimeField = document.getElementById("salida");
+      // Obtener fecha y hora actual
+      const now = new Date();
+      // Formatear a YYYY-MM-DDTHH:mm
+      const formattedDate = now.toISOString().slice(0, 16);
+      // Asignar como valor por defecto
+      datetimeField.value = formattedDate;
+    </script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
