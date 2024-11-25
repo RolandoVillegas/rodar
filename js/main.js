@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(id);
     console.log(Viaje.obtenerViaje(id));
     // Guardar el id del viaje en el localStorage
-    localStorage.setItem("viajeId", id);
+    localStorage.setItem("viajeId", parseInt(id));
 
     // Obtener datos del viaje
     const viaje = Viaje.obtenerViaje(id);
@@ -300,6 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar el botón de Volver al inicio
         const btnInicio = document.getElementById("btn-inicio");
         btnInicio.style.display = "block";
+        // Mostrar el botón ver en Mis viajes
+        const btnVerEnMisViajes = document.getElementById("btn-ver-en-mis-viajes");
+        btnVerEnMisViajes.style.display = "block";
         seleccionarViajeOk.innerHTML = `
   <img src="images/success02.gif" alt="Éxito" style="width: 80px; height: 63px; vertical-align: middle; margin-right: 10px;">
   ¡Reserva guardada!
@@ -506,6 +509,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar el botón de Volver al inicio
         const btnInicio = document.getElementById("btn-inicio");
         btnInicio.style.display = "block";
+
+        // Mostrar el botón ver en Mis viajes
+        const btnVerEnMisViajes = document.getElementById("btn-ver-en-mis-viajes");
+        btnVerEnMisViajes.style.display = "block";
       });
     }
   } // Fin de la comprobación de si estamos en offer.html (no borrar!)
@@ -619,7 +626,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             for (let i = 0; i < viajesReservadosDelUsuario.length; i++) {
                 // Para cada viaje, con la propiedad viajesReservadosDelUsuario[i].id, obtener el objeto viaje y mostrar su información en la tabla
-                const viaje = Viaje.obtenerViaje(viajesReservadosDelUsuario[i].id);
+                const viaje = Viaje.obtenerViaje(parseInt(viajesReservadosDelUsuario[i].id));
                 const reserva = viajesReservadosDelUsuario[i];
                 tablaReservasHTML += `
                     <tr>
