@@ -340,7 +340,10 @@ form {
   color: red;
   text-align: center;
 }
-
+.success {
+  color: green;
+  text-align: center;
+}
 
 
 /***********************************************************************************************/

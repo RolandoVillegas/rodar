@@ -17,7 +17,7 @@
         <div class="navbar-menu" id="navbarMenu">
           <a href="search.html">Buscar viaje</a>
           <a href="offer.html">Ofrecer transporte</a>
-          <a href="#que-es-rodar">¿Qué es Rodar?</a>
+          <a href="what-is-carpooling.html">¿Qué es Rodar?</a>
           <!-- Aquí va la opción Login o Mis viajes/dashboard -->
           <span id="menu-dynamic"></span>
           <!-- El botón de logout se muestra solo si hay un usuario logueado. El botón se oculta al inicio -->
@@ -31,7 +31,7 @@
       <section class="container">
         <div id="login-section">
           <section id="form-login" class="cards-section">
-            <form>
+            <form class="form">
               <h2>Login</h2>
               <p>Inicia sesión para acceder a tu cuenta.</p>
               <label for="usuario">Usuario</label>
@@ -51,6 +51,8 @@
               <button id="btn-login" class="btn btn-primary" type="button">
                 Iniciar sesión
               </button>
+              <div id="mensaje-login-error" class="error" style="display: none"></div>
+              <div id="mensaje-login-ok" class="success" style="display: none"></div>
             </form>
           </section>
         </div>

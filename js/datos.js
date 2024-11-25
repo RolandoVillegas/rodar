@@ -12,14 +12,17 @@ function inicializarDatos() {
         const usuario01 = Usuario.crearUsuario("juanperez", "1234", "Juan", "Pérez", "juanperez@jmail.com", "2997456789");
         const usuario02 = Usuario.crearUsuario("mariagomez", "1234", "María", "Gómez", "mariagomez@jmail.com", "2997987654");
         const usuario03 = Usuario.crearUsuario("carloslopez", "1234", "Carlos", "López", "carloslopez@jmail.com", "2997123456");
+        const usuario04 = Usuario.crearUsuario("elenasantos", "1234", "Elena", "Santos", "elenasantos@jmail.com", "2997456790");
 
         // Crear vehículo para el usuario 1
         const vehiculo01 = Vehiculo.crearVehiculo(usuario01.id, "Toyota", "Corolla", "AG900AA", 4);
+        const vehiculo02 = Vehiculo.crearVehiculo(usuario04.id, "Chevrolet", "Cruze", "AA123BN", 3);
 
         // Crear viajes
         Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Buenos Aires", "2024-12-01T08:00:00", 20, "no");
         Viaje.crearViaje(usuario01.id, vehiculo01.id, "Buenos Aires", "Cipolletti", "2024-12-15T10:00:00", 20, "no");
         Viaje.crearViaje(usuario01.id, vehiculo01.id, "Cipolletti", "Neuquén", "2024-12-17T14:00:00", 1, "no");
+        Viaje.crearViaje(usuario04.id, vehiculo02.id, "Bariloche", "Mendoza", "2024-12-10T10:00:00", 24, "no");
 
         // Crear reservas
         Reserva.crearReserva(1, usuario02.id, 2, "2024-11-20T10:00:00"); // María reserva 2 asientos en el primer viaje

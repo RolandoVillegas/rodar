@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${viaje.salidaFechaHora}</td>
           <td>${viaje.duracionEstimada} horas</td>
           <td class="link-icon">
-            <a href="#" class="detalle-viaje" data-id="${viaje.id}">➡️</a>
+            <a href="#" class="detalle-viaje" data-id="${viaje.id}"><img src="images/right-arrow.jpeg" alt="Ver viaje" style="width: 23px; height: 23px; vertical-align: middle;"></a>
           </td>
         </tr>
       `;
@@ -283,13 +283,13 @@ document.addEventListener("DOMContentLoaded", () => {
         Viaje.marcarViajeReservado(viajeIdLs);
         console.log(Reserva.reservas);
         console.log(Viaje.viajes);
-        alert("Reserva guardada");
+        // alert("Reserva guardada");
         // Agregar un mensaje de confirmación y una imagen centrada en la pantalla para avisar al usuario
-        // que la reserva se ha guardado correctamente, usando el div con id="error-seleccionar-viaje"
+        // que la reserva se ha guardado correctamente, usando el div con id="ok-seleccionar-viaje"
 
         // Mostrar el mensaje de confirmación
-        const errorSeleccionarViaje = document.getElementById(
-          "error-seleccionar-viaje"
+        const seleccionarViajeOk = document.getElementById(
+          "ok-seleccionar-viaje"
         );
         // Ocultar el botón de Tomar viaje
         const btnTomarViaje = document.getElementById("btn-tomar-viaje");
@@ -300,11 +300,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar el botón de Volver al inicio
         const btnInicio = document.getElementById("btn-inicio");
         btnInicio.style.display = "block";
-        errorSeleccionarViaje.innerHTML = `
+        seleccionarViajeOk.innerHTML = `
   <img src="images/success02.gif" alt="Éxito" style="width: 80px; height: 63px; vertical-align: middle; margin-right: 10px;">
   ¡Reserva guardada!
 `;
-        errorSeleccionarViaje.hidden = false;
+        seleccionarViajeOk.hidden = false;
       } else {
         // Sin usuario logueado: mostrar un mensaje de error
         const errorSeleccionarViaje = document.getElementById(
@@ -331,7 +331,12 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (usuarioEncontrado) {
-        alert("Inicio de sesión exitoso");
+        // Mostrar mensaje de inicio de sesión exitoso
+        const mensajeInicioSesionOk = document.getElementById("mensaje-login-ok");
+        mensajeInicioSesionOk.innerHTML= `<p>Inicio de sesión exitoso. Volveremos ahora a la página principal.</p>`;
+        mensajeInicioSesionOk.style.display = "block";
+        // alert("Inicio de sesión exitoso");
+
 
         // Almacenar en localStorage
         localStorage.setItem("usuario", usuarioEncontrado.usuario);
@@ -340,10 +345,16 @@ document.addEventListener("DOMContentLoaded", () => {
         actualizarMenu();
         console.log(localStorage.getItem("usuario"));
         console.log(localStorage.getItem("usuarioId"));
-        // Redirigir a la página principal
-        //window.location.href = "index.html";
+        // Redirigir a la página principal después de 3 segundos	
+        setTimeout(() => {
+            window.location.href = "index.html";
+            }, 3000);
       } else {
-        alert("Usuario o contraseña incorrectos");
+        // Mostrar mensaje de error
+        const mensajeLoginError = document.getElementById("mensaje-login-error");
+        mensajeLoginError.innerHTML = `<p>Usuario o contraseña incorrectos</p>`;
+        mensajeLoginError.style.display = "block";
+        // alert("Usuario o contraseña incorrectos");
       }
     });
   }
@@ -418,7 +429,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const salida = document.getElementById("salida").value.trim();
         const duracion = document.getElementById("duracion").value.trim();
         const idUsuario = parseInt(usuarioId);
-        const idVehiculo = Vehiculo.obtenerVehiculo(parseInt(usuarioId)).id;
+        const idVehiculo = Vehiculo.obtenerVehiculo(parseInt(parseInt(usuarioId)));
+
+        console.log(origen);
+        console.log(destino);
+        console.log(salida);
+        console.log(duracion);
+        console.log(usuarioId);
+        console.log(idVehiculo);
 
         // Verificar que los campos estén completos
         if (!origen || !destino || !salida || !duracion) {
@@ -511,6 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Buscar si el usuario tiene un vehículo (devuelve un array)
         const vehículosDelUsuario = Vehiculo.obtenerVehiculoPorUsuario(usuarioId);
+        console.log("Vehículos del usuario:");
         console.log(vehículosDelUsuario);
         
         // Buscar si el usuario tiene viajes ofrecidos (devuelve un array)
@@ -634,7 +653,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <th>Destino</th>
                             <th>Salida</th>
                             <th>Duración</th>
-                            <th>Ofrecido</th>
+                            <th>¿Reservado?</th>
                         </tr>
                     </thead>
                     <tbody> 
@@ -650,7 +669,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${viaje.destino}</td>
                         <td>${viaje.salidaFechaHora.slice(0, 10)} - ${viaje.salidaFechaHora.slice(11, 16)}</td>
                         <td>${viaje.duracionEstimada} horas</td>
-                        <td>${oferta.ofertado}</td>
+                        <td>${viaje.reservado}</td>
                     </tr>   
                 `;
             }

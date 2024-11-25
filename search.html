@@ -17,7 +17,7 @@
         <div class="navbar-menu" id="navbarMenu">
           <a href="search.html">Buscar viaje</a>
           <a href="offer.html">Ofrecer transporte</a>
-          <a href="#que-es-rodar">¿Qué es Rodar?</a>
+          <a href="what-is-carpooling.html">¿Qué es Rodar?</a>
           <!-- Aquí va la opción Login o Mis viajes/dashboard -->
           <span id="menu-dynamic"></span>
           <!-- El botón de logout se muestra solo si hay un usuario logueado. El botón se oculta al inicio -->
@@ -32,7 +32,7 @@
         <div id="search-section">
           <!-- Sección de búsqueda -->
           <section id="form-search-trip-section" class="cards-section">
-            <form id="form-search-trip">
+            <form id="form-search-trip" class="form">
               <h2>Buscar viaje</h2>
               <p>
                 Buscá dónde querés ir y reducí tus gastos. Tu bolsillo,
@@ -68,17 +68,18 @@
 
         <!-- Sección de detalles del viaje -->
         <div id="pick-a-trip-section" class="cards-section" style="display: none;">
-          <form id="pick-a-trip" style="display: none;"></form>
+          <form id="pick-a-trip" style="display: none;" class="form"></form>
             <h2>Detalle del viaje</h2>
             <div id="detalle-viaje"></div>
             <button id="btn-tomar-viaje" class="btn btn-primary">
               ¡Quiero este viaje!
             </button>
-            <button id="btn-volver" class="btn">Volver a los resultados</button>
+            <button id="btn-volver" class="btn btn-secondary">Volver a los resultados</button>
             <a href="index.html" id="btn-inicio" class="btn" style="display: none;"
             >Volver al inicio</a>
             <!-- <button id="btn-inicio" class="btn" style="display: none;">Volver al inicio</button> -->
             <div id="error-seleccionar-viaje" class="error" hidden></div>
+            <div id="ok-seleccionar-viaje" class="success" hidden></div>
              
 
           </form>
